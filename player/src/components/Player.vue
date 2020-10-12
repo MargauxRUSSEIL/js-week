@@ -3,7 +3,7 @@
     <h1 class="text-5xl font-bold">Ma video</h1>
 
     <div class="Player__inner relative">
-      <video @timeupdate="onUpdate" class="w-full" src="/assets/video.mp4" controls=true muted></video>
+      <video @timeupdate="onUpdate" class="w-full" src="../../public/assets/video.mp4" controls=true muted></video>
 
       <div class="Player__layer absolute top-0 left-0 w-full h-full text-left pointer-events-none p-12 text-white">
         <div class="text-4xl font-bold" v-if="currentLayer">
@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import data from '@/assets/data.json'
+import data from '../assets/data.json'
 export default {
   data() {
     return {
