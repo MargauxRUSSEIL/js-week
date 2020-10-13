@@ -11,7 +11,7 @@ module.exports = {
       colors: {
         'blue-dark': '#1E266D',
         'blue-button': '#3751FF',
-        'blue-text': '#455880'
+        'blue-text': '#455880',
       }
     }
   },
