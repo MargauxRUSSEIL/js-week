@@ -1,0 +1,25 @@
+.link {
+    @apply mr-10 p-3 text-blue-dark ;
+}
+
+.link:focus, .link:hover {
+    @apply text-blue-button ;
+}
+
+.link-rounded {
+    @apply text-white bg-blue-button rounded-full px-4 ;
+    padding-top: 9px ;
+    padding-bottom: 10px ;
+}
+
+.link-rounded:hover {
+    @apply bg-white text-blue-text ;
+}
+
+.link-rounded--white {
+    @apply bg-white text-blue-text ;
+}
+
+.link-rounded--white:hover {
+    @apply text-white bg-blue-button ;
+}
