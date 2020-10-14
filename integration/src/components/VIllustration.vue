@@ -73,6 +73,18 @@ export default {
         // Récupérer les éléments qui ont un data attribute speed
         this.elements = this.$el.querySelectorAll('[data-speed]')
 
+        for (const element of this.elements) {
+            element.easeValues = {
+                x: 0,
+                y: 0
+            }
+        }
+
+        this.mouse = {
+            x: 0,
+            y: 0
+        }
+
         this.render()
     },
 
@@ -116,32 +128,38 @@ export default {
 
             const normX = -1 + ((e.x / window.innerWidth) * 2)
             const normY = -1 + ((e.y/ window.innerHeight) * 2)
-            const distanceMaxX = 30
-            const distanceMaxY = 10
 
-            const x = normX * distanceMaxX
-            const y = normY * distanceMaxY
-
-            // On loop les éléments
-            for (const el of this.elements) {
-                // On ajoute un nouveau multiplicateur pour faire varier la distance.
-                const factor = el.dataset.speed || 1
-                const xFinal = x * factor
-                const yFinal = y * factor
-                // On applique à l'objet un déplacement css xFinal en x et yFinal en y.
-                el.style.transform = `translate3d(${xFinal}px, ${yFinal}px, 0)`
-            }
+            this.mouse.x = normX
+            this.mouse.y = normY 
         },
 
         render () {
-            console.log('render ? !')
-            this.translate
+            this.translate()
 
             this.raf = requestAnimationFrame(this.render)
         },
 
         translate () {
-        //     el.style.transform = `translate3d(${xFinal}px, ${yFinal}px, 0)`
+            const distanceMaxX = 30
+            const distanceMaxY = 10
+
+            const x = this.mouse.x * distanceMaxX
+            const y = this.mouse.y * distanceMaxY
+
+            // On loop les éléments
+            for (const el of this.elements) {
+                // On ajoute un nouveau multiplicateur pour faire varier la distance.
+                const factor = el.dataset.speed || 1
+
+                const xFinal = x * factor
+                const yFinal = y * factor
+                
+                el.easeValues.x += (xFinal - el.easeValues.x) * 0.1
+                el.easeValues.y += (yFinal - el.easeValues.y) * 0.1
+
+                // On applique à l'objet un déplacement css xFinal en x et yFinal en y.
+                el.style.transform = `translate3d(${el.easeValues.x}px, ${el.easeValues.y}px, 0)`
+            }
         },
 
         addListeners () {
