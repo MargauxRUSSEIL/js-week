@@ -1,7 +1,7 @@
 <template>
     <div class="Hero text-center">
-        <div class="Hero__container max-w-4xl mx-auto pt-20">
-            <h1 class="title">Good design meets<br>great user experience</h1>
+        <div class="Hero__container container pt-20">
+            <h1 class="title">Good design meets<br class="hidden lg:block"> great user experience</h1>
             <p class="my-6 text-blue-text text-lg">For everyone, from beginners to experts</p>
 
             <div class="buttons">
@@ -35,6 +35,12 @@
 
 .title {
     @apply text-blue-dark font-bold leading-none ;
-    font-size: 56px ;
+    font-size: 32px ;
+}
+
+@screen md {
+    .title {
+        font-size: 56px ;
+    }
 }
 </style>
