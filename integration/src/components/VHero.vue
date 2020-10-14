@@ -1,7 +1,7 @@
 <template>
     <div class="Hero text-center">
         <div class="Hero__container container pt-20">
-            <h1 class="title">Good design meets<br class="hidden lg:block"> great user experience</h1>
+            <h1 class="title" data-scroll data-scroll-speed="2">Good design meets<br class="hidden lg:block"> great user experience</h1>
             <p class="my-6 text-blue-text text-lg">For everyone, from beginners to experts</p>
 
             <div class="buttons">
