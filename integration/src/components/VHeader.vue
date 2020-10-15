@@ -21,7 +21,7 @@
                 <span class="sr-only">Menu</span>
             </button>
         </div>
-        <v-menu-mobile v-show="isMenuOpen"></v-menu-mobile>
+        <v-menu-mobile v-if="isMenuOpen"></v-menu-mobile>
     </header>
 </template>
 
@@ -68,16 +68,10 @@ export default {
     height: 2px;
     @apply bg-blue-button block transition duration-500 origin-center;
 }
-.menu-btn:focus,
-.menu-btn:hover {
-    @apply  bg-blue-button;
-}
 @media (hover: none) {
-    .menu-btn:hover { color: inherit; }
-}
-.menu-btn:focus .bar,
-.menu-btn:hover .bar {
-    @apply bg-white;
+    .menu-btn:hover { 
+        color: inherit; 
+    }
 }
 /**
 Menu Open
@@ -90,5 +84,11 @@ Menu Open
 }
 .menu-btn--open .bar:nth-child(3){
     transform: translateY(-4.2px) rotate(-45deg);
+}
+.menu-btn--open {
+    @apply bg-blue-button ;
+}
+.menu-btn--open .bar {
+    @apply bg-white ;
 }
 </style>
