@@ -13,7 +13,7 @@
                 <a href="#" class="link-rounded">Contact Us</a>
             </div>
 
-            <button class="ml-auto menu-btn" :class="{'menu-btn--open': isMenuOpen}" @click="toggleMenu">
+            <button ref="button" class="ml-auto menu-btn" :class="{'menu-btn--open': isMenuOpen}" @click="toggleMenu">
                 <span class="bar"></span>
                 <span class="bar"></span>
                 <span class="bar"></span>
@@ -28,6 +28,11 @@
 <script>
 import VMenuMobile from '@/components/VMenuMobile'
 export default {
+    watch: {
+        $route (){
+            this.isMenuOpen = false
+        }
+    },
   components: {
     VMenuMobile
   },
@@ -38,6 +43,7 @@ export default {
   },
   methods: {
     toggleMenu() {
+        this.$refs.button.blur()
       this.isMenuOpen = !this.isMenuOpen
     }
   }
@@ -60,14 +66,29 @@ export default {
 .menu-btn .bar {
     width: 100%;
     height: 2px;
-    @apply bg-blue-button block;
+    @apply bg-blue-button block transition duration-500 origin-center;
 }
 .menu-btn:focus,
 .menu-btn:hover {
     @apply  bg-blue-button;
 }
+@media (hover: none) {
+    .menu-btn:hover { color: inherit; }
+}
 .menu-btn:focus .bar,
 .menu-btn:hover .bar {
     @apply bg-white;
+}
+/**
+Menu Open
+*/
+.menu-btn--open .bar:nth-child(1){
+    transform: translateY(4.8px) rotate(45deg);
+}
+.menu-btn--open .bar:nth-child(2){
+    transform: scaleX(0);
+}
+.menu-btn--open .bar:nth-child(3){
+    transform: translateY(-4.2px) rotate(-45deg);
 }
 </style>
